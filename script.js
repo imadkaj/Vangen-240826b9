@@ -1,13 +1,27 @@
+var h3 = document.querySelector("h3");
+
 function gooiButton() {
-    bal.gooi();
+    try {
+        bal.gooi();
+    } catch (error) {
+     logError(error);
+    }
 }
 
 function vangButton() {
-    bal.vang();
+    try {
+        bal.vang(); 
+    } catch (error) {
+        logError(error);
+    }
 }
 
 function resetButton() {
-    bal.reset();
+    try {
+        bal.reset(); 
+    } catch (error) {
+        logError(error);
+    }
 }
 
 
@@ -17,7 +31,7 @@ var bal = {
 
     gooi: function () {
         if (this.balPositie !== "links") {
-            throw Error("bal in verkeerde positie")
+            throw Error("bal in verkeerde positie");
         }
         this.draw(300, 50);
         this.balPositie = "midden";
@@ -25,7 +39,7 @@ var bal = {
 
     vang: function () {
         if (this.balPositie !== "midden") {
-            throw Error("bal in verkeerde positie")
+            throw Error("bal in verkeerde positie");
         }
         this.draw(500, 250);
         this.balPositie = "rechts";
@@ -53,4 +67,9 @@ function constructBal() {
     bal.closePath();
     bal.fill();
     return bal
+}
+
+function logError(error)
+{
+    h3.innerText = "Error van het type: " + error.name;
 }
